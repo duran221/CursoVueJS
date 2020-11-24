@@ -1,0 +1,2 @@
+1. Vamos a crear un componente para lo cual veremos la imagen 1:
+

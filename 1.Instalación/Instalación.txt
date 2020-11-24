@@ -1,0 +1,7 @@
+1. Instalar Node JS.
+2. Instalar Vue CLI. Esto se hace mediante el comando:
+
+	npm install -g vue-cli
+
+3. Esto es todo por ahora.
+

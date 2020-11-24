@@ -1,0 +1,31 @@
+1. Una vez instalado vue-cli vamos a crear un nuevo proyecto, existen distintas configuraciones, pero en nuestro caso
+crearemos la configuración por defecto: webpack, veámos:
+
+	$ vue init webpack mifirstapp
+
+- Se nos hará algunas preguntas para hacer una configuración básica del proyecto: 
+
+2. Una vez creado el proyecto se generan los módulos necesarios para ejecutar un proyecto inicial que no contendrá más
+   que una simple interfaz inicial:
+
+- Generar y ejecutar proyecto:
+
+ - \Users\crist\Downloads\Curso VueJS\2. Crear y Usar Proyecto\mifirstapp> npm  run dev
+
+			Conociendo más a fondo Vue JS:
+
+Carpetas:
+
+node_modules: Los módulos necesarios para que Vue JS funcione correctamente, no se recomienda tocar nada ahí por ahora.
+
+static: donde podemos instalar nuestras librerias como JQuery, Bootstrap, etc, etc...
+
+src: Carpeta importante que contiene el archivo que inicia la aplicación denominado 'main.js'
+
+main.js : Contiene las instrucciones de cómo iniciar la aplicación.
+App.vue: Archivo que contiene los componentes que permiten mostrar la imagen inicial de la aplicación.
+
+NOTA: Vamos en este caso a eliminar un componente para trabajar desde cero:
+
+Eliminando el componente HelloWorld:
+
