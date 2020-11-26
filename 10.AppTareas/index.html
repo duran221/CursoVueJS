@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Vue</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <!--Importante!! la clase offset, me indica cuántas columnas debo desplazarme dentro del espacio disponible-->
+        <div id="taskApp" class="col-sm-8 offset-sm-2">
+            <h2 class="display-4 text-center">
+                <!--Imprimiendo el mensaje que hemos mandado desde el objeto Vue-->
+                {{nameApp}}
+            </h2>
+
+            <table class="table table-striped">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th>Hecho</th>
+                        <th>Tarea</th>
+                        <th>Eliminar</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--La directiva v-for me permite recorrer el objeto de tareas que he traído desde javascript-->
+                    <tr v-for="tarea in tareas">
+                        <td>
+                            <input type="checkbox">
+
+                        </td>
+
+                        <td>
+                            {{tarea.titulo}}
+                        </td>
+
+                        <td>
+                            <button class="btn btn-outline-danger">Eliminar</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!---Importando la CDN de VueJS, otra forma de usar el framework, por ejemplo en un proyecto diferente:-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <!--CDN de JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!--La siempre conocida CDN de Bootstrap:-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+        //Instanciando un nuevo elemento VUE, que es como el inicio de todo esto:
+        new Vue({
+            //El punto de montaje de nuestra aplicación 'el' hace referencia a elemento y es un div html:
+            el: '#taskApp',
+            //Con el objeto data podemos transferir datos a nuestro HTML:
+            data: {
+
+                nameApp: 'App De Tareas En VueJS',
+                //Un array de objetos con las tareas que vamos a mostrar en el HTML:
+                tareas: [{
+                    titulo: 'Limpiar Habitación'
+                }, {
+                    titulo: 'Hacer Almuerzo'
+                }, {
+                    titulo: 'Estudiar Vue'
+                }]
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>
