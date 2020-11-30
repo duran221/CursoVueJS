@@ -7,6 +7,8 @@
     <title>Task Vue</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+
 
 </head>
 
@@ -16,11 +18,28 @@
 
         <!--Importante!! la clase offset, me indica cuántas columnas debo desplazarme dentro del espacio disponible-->
         <div id="taskApp" class="col-sm-8 offset-sm-2">
-            <h2 class="display-4 text-center">
+            <h2 class="display-4 text-center bg-transparent">
                 <!--Imprimiendo el mensaje que hemos mandado desde el objeto Vue-->
                 {{nameApp}}
             </h2>
 
+
+
+            <div class="panel panel-default">
+                <h3 class="text-center text-capitalize">Agregar nueva tarea</h3>
+
+                <!--Directiva v-on:submit permite enviar datos hacia la lógica de Vue-de manera muy simple-->
+                <form class="form-group" v-on:submit="agregarTarea">
+
+                    <!--Directiva v-model: permite pasar un modelo la Javascript,NOTA: El modelo 
+                        Debe ser previamente declarado en el Javascript
+                    -->
+                    <input type="text" name="" class="form-control" id="" v-model="tareas.titulo" required>
+                    <input type="submit" value="Agregar Tarea" class="btn btn-block btn-outline-success">
+
+                </form>
+            </div>
+            <br>
             <table class="table table-striped">
                 <thead class="bg-dark text-light">
                     <tr>
@@ -34,16 +53,23 @@
                     <!--La directiva v-for me permite recorrer el objeto de tareas que he traído desde javascript-->
                     <tr v-for="tarea in tareas">
                         <td>
-                            <input type="checkbox">
+                            <!--Directiva v-model me permite manipular un modelo específico, en este caso,
+                                Estamos editando el atributo 'hecho' del modelo (tareas):
+                            -->
+                            <input type="checkbox" v-model="tarea.hecho">
 
                         </td>
-
-                        <td>
+                        <!--Con la directiva :class es posible agregar clases dinámicamente a nuestros elementos,
+                            la sintaxis implica que primero agregues el nombre de la clase a usar, dos puntos y 
+                            En seguida un valor booleado, true o false:
+                        -->
+                        <td :class="{terminada:tarea.hecho}">
                             {{tarea.titulo}}
                         </td>
 
                         <td>
-                            <button class="btn btn-outline-danger">Eliminar</button>
+                            <!--Directiva v-on:click Me permite adicionar un evento de tipo 'click'-->
+                            <button class="btn btn-outline-danger" v-on:click="eliminarTarea(tarea)">Eliminar</button>
                         </td>
                     </tr>
 
@@ -78,13 +104,47 @@
                 nameApp: 'App De Tareas En VueJS',
                 //Un array de objetos con las tareas que vamos a mostrar en el HTML:
                 tareas: [{
-                    titulo: 'Limpiar Habitación'
+                    titulo: 'Limpiar Habitación',
+                    hecho: true
                 }, {
-                    titulo: 'Hacer Almuerzo'
+                    titulo: 'Hacer Almuerzo',
+                    //Este atributo es manipulado por la directiva v-model:
+                    hecho: false
                 }, {
-                    titulo: 'Estudiar Vue'
+                    titulo: 'Estudiar Vue',
+                    hecho: false
                 }]
-            }
+            },
+            methods: {
+                //Declarando un método en Vue JS:
+                eliminarTarea: function(tarea) {
+
+                    console.log(tarea);
+                    //Obteniendo el índice del objeto:
+                    let indice = this.tareas.indexOf(tarea);
+                    //Eliminando el elemento:
+                    this.tareas.splice(indice);
+                },
+                //Agrega una nueva tarea a la lista existente:
+                agregarTarea: function(e) {
+                    //Evita que la página se recargue:
+                    e.preventDefault();
+
+                    console.log(e);
+                    //Estoy validando que el campo no esté vacío:
+                    if (this.tareas.titulo.trim().length != 0) {
+
+                        //Así de simple se añade una nueva tarea al vector, la cual se verá reflejada en pantalla:
+                        this.tareas.push({
+                            titulo: this.tareas.titulo,
+                            hecho: false
+                        });
+
+                    }
+
+                }
+
+            },
 
         });
     </script>

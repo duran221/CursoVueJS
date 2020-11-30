@@ -1,0 +1,4 @@
+.terminada {
+    /*Estoy indicando que el texto va a estar subrayado*/
+    text-decoration: line-through;
+}
