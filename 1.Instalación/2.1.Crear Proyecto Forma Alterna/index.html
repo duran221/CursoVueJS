@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <h1>{{titulo}}</h1>
+        <h4>Imprimiendo números</h4>
+        <ul>
+            <!--Estamos imprimiendo los números de una lista con VUE:-->
+            <li v-for="numero in numeros">
+                {{numero}}
+            </li>
+        </ul>
+
+        <h4>Imprimiendo Objetos</h4>
+        <ul>
+            <li v-for="persona in personas">
+                Nombre: {{persona.nombre}} - Apellido: {{persona.apellido}}
+
+                <!--Este span sólo aparece si la directiva condicional se cumple-->
+                <span v-if="persona.nombre=== 'Carolina'">Felicidades desarrolladora!</span>
+            </li>
+        </ul>
+
+
+        <h4>Formulario que permite agregar frutas de una manera simple:</h4>
+
+        <!--v-mode: Permite enviar datos desde el input hacia nuestro Javascript, esto es muy interesante
+            Si queremos pasar datos al Javascript-->
+        <input type="text" placeholder="inserte una fruta" v-model="nuevaFruta">
+        <button @click="agregarFruta">Guardar Fruta</button>
+
+        <ul>
+            <li v-for="fruta in frutas">
+                {{fruta.cantidad}} - {{fruta.nombre}} -
+
+                <span v-if="fruta.cantidad===0">Sin Stock</span>
+            </li>
+        </ul>
+    </div>
+
+
+    <!--Incluimos la CDN de VUE para usarlo directamente en el proyecto sin instalaciones adicionales-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <!--Aquí vamos a usar toda la lógica de VueJS-->
+    <script type="text/javascript" src="./src/main.js"></script>
+</body>
+
+</html>
